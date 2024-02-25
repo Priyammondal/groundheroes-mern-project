@@ -1,37 +1,38 @@
-const jwt = require('jsonwebtoken')
-const response = require('../helpers/response')
-const key = require('./private.key')
+const jwt = require("jsonwebtoken");
 
-module.exports.check = (req, res, next) => {
-  const { authorization } = req.headers
-  if (authorization && authorization.startsWith('Bearer ')) {
-    let token = authorization.slice(7)
+const generateJWT = (req, res) => {
+  const payload = {
+    sessionId: req.body.sessionId,
+  };
+  const expiresIn = "1h";
+  if (payload.sessionId) {
     try {
-      token = jwt.verify(token, 'KODERAHASIA')
-      if (token) {
-        req.user = token
-        next()
-      } else {
-        return response(res, 'Unauthorized', 401, false)
-      }
+      const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, {
+        expiresIn,
+      });
+      return res.status(200).json({ token, type: "Bearer" });
     } catch (err) {
-      return response(res, 'Token error', 401, false, { error: err.message })
+      console.log(err.message);
     }
   } else {
-    return response(res, 'Authorization needed', 401, false)
+    return res
+      .status(404)
+      .json({ message: "Please pass sessionId to continue!" });
   }
-}
+};
 
-module.exports.checkJwt = ( req, res, next ) => {
+const checkJWT = (req, res, next) => {
   const { authorization } = req.headers;
-  if (authorization && authorization.startsWith('Bearer ')) {
-    let token = authorization.slice(7)
-    try {
-      const verify = jwt.verify(token, key)
-      
-    }catch(err) {
-      console.log(err);
-    }
+  try {
+    const token = authorization.split(" ")[1];
+    jwt.verify(token, process.env.JWT_SECRET_KEY);
+  } catch (error) {
+    return res.status(400).json({ error: "Unauthorized Access" });
   }
+  next();
+};
 
-}
+module.exports = {
+  generateJWT,
+  checkJWT,
+};
