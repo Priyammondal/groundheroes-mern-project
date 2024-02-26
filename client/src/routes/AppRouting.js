@@ -1,8 +1,8 @@
 import React, { createContext, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
-import Login from "../pages/login/index.jsx";
-import SignUp from "../pages/signup/index.jsx";
+import Login from "../pages/login/Index.jsx";
+import SignUp from "../pages/signup/Index.jsx";
 import CategoryListing from "../pages/CategoryListing";
 import ContactListing from "../pages/ContactListing";
 import GlobalStyle from "../globalStyles";

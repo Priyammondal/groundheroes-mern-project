@@ -19,11 +19,12 @@
     .logo {
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-end;
       text-decoration: none;
       color: #fff;
+      gap: 8px;
       .logo-img {
-        height: 40px;
+        height: 50px;
       }
     }
     .registration-form {

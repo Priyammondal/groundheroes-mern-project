@@ -16,8 +16,7 @@ const HomePage = () => {
 
   const mainHeadingText = (
     <>
-      Search for <br></br> <b>services</b> by <br></br> entering your
-      <br></br> location <b>Pin Code</b>
+      Search for <b>services</b> by entering your location <b>Pin Code</b>
     </>
   );
   const FeatureItems = [

@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 import { loginState } from "../../redux/reducers";
 import { useNavigate } from "react-router-dom";
 
-const index = () => {
+const Index = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -18,14 +18,14 @@ const index = () => {
     navigate("/");
   };
   return (
-    <div className="login vh-100 vw-100 d-flex row p-0 m-0">
+    <div className="login vh-100 vw-100 d-flex row p-0 m-0 container mx-auto">
       <aside className="image-section col-12 col-lg-6">
         <img src={loginImg} alt="loginImg" />
       </aside>
       <section className="form-section col-12 col-lg-6">
         <Link to="/" className="logo">
-          <h3 className="m-0 logo-txt">SnapStay</h3>
-          <img className="logo-img" src={Logo} alt="SnapStay logo" />
+          <img className="logo-img" src={Logo} alt="Ground Heroes logo" />
+          <h5 className="m-0 logo-txt pb-1">Ground Heroes</h5>
         </Link>
         <form className="login-form px-3 px-md-5 py-4" onSubmit={handleSubmit}>
           <h2>Login</h2>
@@ -62,4 +62,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

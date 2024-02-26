@@ -1,0 +1,15 @@
+.login {
+  position: relative;
+  .profile-dropdown {
+    position: absolute;
+    top: 55px;
+    width: 100% !important;
+    cursor: pointer;
+  }
+  @media screen and (max-width: 767px) {
+    .profile-dropdown {
+      width: 150px!important;
+      right: -10px;
+    }
+  }
+}
